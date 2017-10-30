@@ -12,6 +12,16 @@ export function DicomError(message) {
 }
 DicomError.prototype = new Error();
 
+// This is some dark magic, these come from the DICOM spec
+const tags = {
+  directoryRecordSeq: "x00041220",
+  referencedFileId: "x00041500",
+  directoryRecordType: "x00041430",
+  seriesNumber: "x00200011",
+  seriesModality: "x00080060",
+  studyDate: "x00080020"
+};
+
 // Handy representation for passing around dicomdir details
 export default class Dicomdir {
   constructor(byteArray) {
